@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * Created by Rober_000 on 2014-09-30.
+ * Created by Robert Warren Gilmore on 2014-09-30.
  */
 public class LocationChecker {
 
