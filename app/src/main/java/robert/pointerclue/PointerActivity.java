@@ -49,8 +49,10 @@ public class PointerActivity extends Activity {
         locationChecker = new LocationChecker(this);
         rotationChecker = new RotationChecker(this);
         destination = new Location("");
-        destination.setLongitude(-77.6917419);
-        destination.setLatitude(43.0763321);
+//        destination.setLongitude(-77.6917419);
+//        destination.setLatitude(43.0763321);
+        destination.setLongitude(-111.894764);
+        destination.setLatitude(40.562904);
     }
 
     @Override
