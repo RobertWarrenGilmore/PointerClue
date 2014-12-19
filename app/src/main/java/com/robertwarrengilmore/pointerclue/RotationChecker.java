@@ -1,4 +1,4 @@
-package robert.pointerclue;
+package com.robertwarrengilmore.pointerclue;
 
 import android.content.Context;
 import android.hardware.Sensor;

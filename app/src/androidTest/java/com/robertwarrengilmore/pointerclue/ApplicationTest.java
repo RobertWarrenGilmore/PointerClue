@@ -1,4 +1,4 @@
-package robert.pointerclue;
+package com.robertwarrengilmore.pointerclue;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,20 +1,23 @@
-package robert.pointerclue;
+package com.robertwarrengilmore.pointerclue;
 
-import android.app.Activity;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-
-public class PointerActivity extends Activity {
+/**
+ * A placeholder fragment containing a simple view.
+ */
+public class PointerFragment extends Fragment {
 
     private ImageView arrow;
     private ProgressBar workingIndicator;
@@ -22,7 +25,7 @@ public class PointerActivity extends Activity {
     private ImageView nearIndicator;
     private float currentAngle = 0f;
 
-    private Location destination;
+    private Location destination = new Location("");
 
     private LocationChecker locationChecker;
     private RotationChecker rotationChecker;
@@ -37,26 +40,22 @@ public class PointerActivity extends Activity {
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pointer);
+    public PointerFragment() {
+        // UR
+        destination.setLatitude(43.130278);
+        destination.setLongitude(-77.625);
 
-        arrow = (ImageView) findViewById(R.id.arrow);
-        workingIndicator = (ProgressBar) findViewById(R.id.workingIndicator);
-        imprecisionIndicator = (TextView) findViewById(R.id.imprecisionIndicator);
-        nearIndicator = (ImageView) findViewById(R.id.nearIndicator);
-        locationChecker = new LocationChecker(this);
-        rotationChecker = new RotationChecker(this);
-        destination = new Location("");
+        // house
 //        destination.setLongitude(-77.6917419);
 //        destination.setLatitude(43.0763321);
-        destination.setLongitude(-111.894764);
-        destination.setLatitude(40.562904);
+
+        // Utah
+//        destination.setLongitude(-111.894764);
+//        destination.setLatitude(40.562904);
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
 
         locationChecker.start();
@@ -65,12 +64,33 @@ public class PointerActivity extends Activity {
     }
 
     @Override
-    protected void onPause() {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        locationChecker = new LocationChecker(getActivity());
+        rotationChecker = new RotationChecker(getActivity());
+    }
+
+    @Override
+    public void onPause() {
         super.onPause();
 
         locationChecker.stop();
         rotationChecker.stop();
         arrowUpdateHandler.removeCallbacks(arrowUpdateTask);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_pointer, container, false);
+
+        arrow = (ImageView) rootView.findViewById(R.id.arrow);
+        workingIndicator = (ProgressBar) rootView.findViewById(R.id.workingIndicator);
+        imprecisionIndicator = (TextView) rootView.findViewById(R.id.imprecisionIndicator);
+        nearIndicator = (ImageView) rootView.findViewById(R.id.nearIndicator);
+
+        return rootView;
     }
 
     private void updateArrow() {
@@ -107,7 +127,7 @@ public class PointerActivity extends Activity {
             currentAngle = displayHeading;
         }
         if (imprecise) {
-            arrow.setAlpha(0.0f);
+            arrow.setAlpha(0f);
             if (near) {
                 nearIndicator.setVisibility(View.VISIBLE);
                 workingIndicator.setVisibility(View.INVISIBLE);
@@ -129,25 +149,5 @@ public class PointerActivity extends Activity {
             imprecisionIndicator.setVisibility(View.INVISIBLE);
         }
 
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.pointer, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-        return super.onOptionsItemSelected(item);
     }
 }
