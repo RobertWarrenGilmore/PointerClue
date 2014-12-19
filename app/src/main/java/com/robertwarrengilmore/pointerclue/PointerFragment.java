@@ -142,7 +142,7 @@ public class PointerFragment extends Fragment {
                 arrow.setAlpha(0.1f);
                 workingIndicator.setVisibility(View.VISIBLE);
             } else {
-                arrow.setAlpha(1.0f);
+                arrow.setAlpha(1f);
                 workingIndicator.setVisibility(View.INVISIBLE);
             }
             nearIndicator.setVisibility(View.INVISIBLE);
