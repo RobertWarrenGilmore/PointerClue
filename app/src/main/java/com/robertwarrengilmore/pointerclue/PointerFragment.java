@@ -109,9 +109,8 @@ public class PointerFragment extends Fragment {
                 imprecise = false;
             }
             float bearing = locationChecker.getLocation().bearingTo(destination);
-            float displayHeading = ((zOrientation * 180) + bearing) % 360;
+            float displayHeading = (bearing - zOrientation) % 360;
 
-            // create a rotation animation (reverse turn degree degrees)
             if (Math.abs(displayHeading - currentAngle) > 180) {
                 currentAngle -= 360;
             }

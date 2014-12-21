@@ -19,8 +19,9 @@
         android:visibility="invisible" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:id="@+id/arrow"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
@@ -39,13 +40,15 @@
         android:visibility="visible" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:id="@+id/nearIndicator"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:scaleX="0.35"
         android:scaleY="0.35"
+        android:src="@drawable/success"
         android:visibility="invisible" />
 
 </RelativeLayout>
