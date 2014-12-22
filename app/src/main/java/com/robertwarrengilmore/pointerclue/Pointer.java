@@ -12,11 +12,6 @@ public class Pointer extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pointer);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.pointerContainer, new PointerFragment())
-                    .commit();
-        }
     }
 
 
