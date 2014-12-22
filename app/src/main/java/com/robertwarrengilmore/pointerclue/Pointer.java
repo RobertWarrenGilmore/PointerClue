@@ -14,7 +14,7 @@ public class Pointer extends ActionBarActivity {
         setContentView(R.layout.activity_pointer);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PointerFragment())
+                    .add(R.id.pointerContainer, new PointerFragment())
                     .commit();
         }
     }
